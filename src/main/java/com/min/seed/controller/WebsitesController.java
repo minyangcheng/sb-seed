@@ -5,6 +5,9 @@ import com.min.seed.entity.Websites;
 import com.min.seed.service.WebsitesService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +24,12 @@ import java.util.List;
 public class WebsitesController {
     @Resource
     private WebsitesService websitesService;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @PostMapping("/add")
     public Result add(Websites websites) {
@@ -53,4 +62,11 @@ public class WebsitesController {
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
+
+    @PostMapping("/test")
+    public Result test(@RequestParam String name) {
+        stringRedisTemplate.opsForValue().set("username",name);
+        return ResultGenerator.genSuccessResult();
+    }
+
 }
