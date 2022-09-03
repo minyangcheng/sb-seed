@@ -1,9 +1,10 @@
-package com.min.seed.core.exception;
+package com.min.seed.core.error.exception;
 
 /**
  * 服务（业务）异常如“ 账号或密码错误 ”，该异常只做INFO级别的日志记录 @see WebMvcConfigurer
  */
 public class ServiceException extends RuntimeException {
+
     public ServiceException() {
     }
 
@@ -14,4 +15,5 @@ public class ServiceException extends RuntimeException {
     public ServiceException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

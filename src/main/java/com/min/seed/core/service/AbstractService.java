@@ -2,7 +2,7 @@ package com.min.seed.core.service;
 
 
 import com.min.seed.core.mapper.Mapper;
-import com.min.seed.core.exception.ServiceException;
+import com.min.seed.core.error.exception.ServiceException;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Condition;

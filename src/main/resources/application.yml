@@ -59,6 +59,16 @@ pagehelper:
   # 支持通过 Mapper 接口参数来传递分页参数
   supportMethodsArguments: true
 
+#微信token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（单位分钟）一天 1400
+  expireTime: 1
+
+
 # 日志
 #logging:
 #  # 以文件方式记录日志

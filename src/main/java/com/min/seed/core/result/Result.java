@@ -11,20 +11,8 @@ public class Result<T> {
     private String message;
     private T data;
 
-    public static <T> Result<T> newInstance(ResultCode resultCode) {
-        return new Result<T>().setCode(resultCode);
-    }
-
-    public static <T> Result<T> newInstance(ResultCode resultCode, String message) {
-        return new Result<T>().setCode(resultCode).setMessage(message);
-    }
-
-    public static <T> Result<T> newInstance(ResultCode resultCode, T data, String message) {
-        return new Result<T>().setCode(resultCode).setData(data).setMessage(message);
-    }
-
-    public Result setCode(ResultCode resultCode) {
-        this.code = resultCode.code();
+    public Result setCode(int code) {
+        this.code = code;
         return this;
     }
 
@@ -54,4 +42,5 @@ public class Result<T> {
     public String toString() {
         return JSON.toJSONString(this);
     }
+
 }
