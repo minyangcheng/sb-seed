@@ -38,6 +38,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         super.addInterceptors(registry);
         registry.addInterceptor(new AuthInterceptor())
                 .addPathPatterns("/**")      //拦截的路径
-                .excludePathPatterns("/login"); //排除的路径
+                .excludePathPatterns("/user/login"); //排除的路径
     }
 }

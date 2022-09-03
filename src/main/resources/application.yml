@@ -32,9 +32,9 @@ spring:
         max-wait: 2000 # 当连接池耗尽时， 抛出异常之前，连接分配被阻塞的时间，也就是连接池满后最长等待时间，负值表示无限期等待
 
 mybatis:
-  # 存放实体的位置
-#  type-aliases-package: com.zoctan.seedling.entity
-  # 存放 mapper 映射文件的位置
+  # 别名前缀,配置类名就不用写全称了
+  # type-aliases-package: com.zoctan.seedling.entity
+  # mapper 映射文件的位置
   mapper-locations: classpath:mapper/*.xml
 
 mapper:
@@ -70,11 +70,14 @@ token:
 
 
 # 日志
-#logging:
-#  # 以文件方式记录日志
-#  file: seedling.log
-#  # 设置目录
-#  path: /var/log
+logging:
+  #  # 以文件方式记录日志
+  #  file: seedling.log
+  #  # 设置目录
+  #  path: /var/log
+  level:
+    com.min.seed.dao: debug
+
 
 config:
   username: minych
