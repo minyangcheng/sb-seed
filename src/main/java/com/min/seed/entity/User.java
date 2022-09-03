@@ -1,10 +1,12 @@
 package com.min.seed.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.min.seed.core.validation.ValidGroup;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Table(name = "sys_user")
@@ -19,32 +21,38 @@ public class User {
     /**
      * 用户名
      */
+    @NotBlank(groups = ValidGroup.Crud.Create.class)
     private String username;
 
     /**
      * 昵称
      */
     @Column(name = "nick_name")
+    @NotBlank
     private String nickName;
 
     /**
      * 性别
      */
+    @NotBlank
     private String gender;
 
     /**
      * 手机号码
      */
+    @NotBlank
     private String phone;
 
     /**
      * 邮箱
      */
+    @NotBlank
     private String email;
 
     /**
      * 密码
      */
+    @NotBlank
     private String password;
 
     /**
