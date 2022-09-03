@@ -1,4 +1,6 @@
 package com.min.seed.controller;
+
+import com.min.seed.core.annotation.NeedLogin;
 import com.min.seed.core.result.Result;
 import com.min.seed.core.result.ResultGenerator;
 import com.min.seed.entity.User;
@@ -14,15 +16,22 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by minych on 2022/09/03.
-*/
+ * Created by minych on 2022/09/03.
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     @Resource
     private UserService userService;
 
+    @PostMapping("/login")
+    public Result login(String username, String password) {
+        return ResultGenerator.genSuccessResult();
+    }
+
     @PostMapping("/add")
+    @NeedLogin
     public Result add(User user) {
         userService.save(user);
         return ResultGenerator.genSuccessResult();

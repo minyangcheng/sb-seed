@@ -1,7 +1,11 @@
 package com.min.seed.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "sys_user")
 public class User {
@@ -58,18 +62,21 @@ public class User {
      * 修改密码的时间
      */
     @Column(name = "pwd_reset_time")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date pwdResetTime;
 
     /**
      * 创建日期
      */
     @Column(name = "create_time")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
      * 更新时间
      */
     @Column(name = "update_time")
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
