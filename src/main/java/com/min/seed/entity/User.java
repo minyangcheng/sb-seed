@@ -21,38 +21,38 @@ public class User {
     /**
      * 用户名
      */
-    @NotBlank(groups = ValidGroup.Crud.Create.class)
+    @NotBlank(groups = ValidGroup.Crud.Create.class, message = "username不能为空")
     private String username;
 
     /**
      * 昵称
      */
     @Column(name = "nick_name")
-    @NotBlank
+    @NotBlank(groups = ValidGroup.Crud.Create.class, message = "nickName不能为空")
     private String nickName;
 
     /**
      * 性别
      */
-    @NotBlank
+    @NotBlank(groups = ValidGroup.Crud.Create.class, message = "gender不能为空")
     private String gender;
 
     /**
      * 手机号码
      */
-    @NotBlank
+    @NotBlank(groups = ValidGroup.Crud.Create.class, message = "phone不能为空")
     private String phone;
 
     /**
      * 邮箱
      */
-    @NotBlank
+    @NotBlank(groups = ValidGroup.Crud.Create.class, message = "email不能为空")
     private String email;
 
     /**
      * 密码
      */
-    @NotBlank
+    @NotBlank(groups = ValidGroup.Crud.Create.class, message = "password不能为空")
     private String password;
 
     /**
