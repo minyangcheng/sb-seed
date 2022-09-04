@@ -54,7 +54,7 @@ public class RequestJsonMethodArgumentResolver implements HandlerMethodArgumentR
         if (required && paramValue == null) {
             throw new ServerException("parameter [" + paramName + "] 不能为空");
         }
-        if (!required && !requestJson.defaultValue().equals(ValueConstants.DEFAULT_NONE)) {
+        if (!required && paramValue == null && !requestJson.defaultValue().equals(ValueConstants.DEFAULT_NONE)) {
             paramValue = requestJson.defaultValue();
         }
         if (paramValue == null) {

@@ -1,11 +1,5 @@
 package com.min.seed.controller;
 
-/**
- * @className: TestController
- * @author: houqd
- * @date: 2022/7/16
- **/
-
 import com.min.seed.core.annotation.CurrentUser;
 import com.min.seed.core.annotation.NeedLogin;
 import com.min.seed.core.annotation.RequestJson;
@@ -23,11 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @description:
- * @author:houqd
- * @time: 2022/7/16 9:11
- */
 @Slf4j
 @RestController
 @RequestMapping("/test")
