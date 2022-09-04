@@ -18,4 +18,9 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
+
+  <select id="findUserByUsernameAndPassword" resultMap="BaseResultMap">
+    select * from sys_user where username = #{username} and password = #{password}
+  </select>
+
 </mapper>

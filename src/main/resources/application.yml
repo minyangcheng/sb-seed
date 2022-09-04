@@ -66,7 +66,7 @@ token:
   # 令牌密钥
   secret: abcdefghijklmnopqrstuvwxyz
   # 令牌有效期（单位分钟）一天 1400
-  expireTime: 1
+  expireTime: 8400
 
 
 # 日志

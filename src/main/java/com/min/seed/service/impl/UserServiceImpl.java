@@ -1,9 +1,9 @@
 package com.min.seed.service.impl;
 
+import com.min.seed.core.service.AbstractService;
 import com.min.seed.dao.UserMapper;
 import com.min.seed.entity.User;
 import com.min.seed.service.UserService;
-import com.min.seed.core.service.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +18,12 @@ import javax.annotation.Resource;
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
     @Resource
-    private UserMapper sysUserMapper;
+    private UserMapper userMapper;
+
+    @Override
+    public User login(String username, String password) {
+        User user = userMapper.findUserByUsernameAndPassword(username, password);
+        return user;
+    }
 
 }

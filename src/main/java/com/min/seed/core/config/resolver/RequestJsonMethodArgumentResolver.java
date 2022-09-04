@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ValueConstants;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -45,12 +46,17 @@ public class RequestJsonMethodArgumentResolver implements HandlerMethodArgumentR
             paramName = methodParameter.getParameterName();
         }
         Object paramValue = jsonObject.get(paramName);
-
         boolean required = requestJson.required();
-        if (required && paramValue == null) {
-            throw new ServerException("parameter[" + paramName + "]不能为空");
+        if (!requestJson.defaultValue().equals(ValueConstants.DEFAULT_NONE)) {
+            //defaultValue有值的时候，隐式required为false
+            required = false;
         }
-
+        if (required && paramValue == null) {
+            throw new ServerException("parameter [" + paramName + "] 不能为空");
+        }
+        if (!required && !requestJson.defaultValue().equals(ValueConstants.DEFAULT_NONE)) {
+            paramValue = requestJson.defaultValue();
+        }
         if (paramValue == null) {
             return null;
         }

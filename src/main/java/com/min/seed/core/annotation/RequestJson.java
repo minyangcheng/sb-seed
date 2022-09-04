@@ -1,6 +1,7 @@
 package com.min.seed.core.annotation;
 
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.web.bind.annotation.ValueConstants;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -23,7 +24,8 @@ public @interface RequestJson {
     @AliasFor("value")
     String name() default "";
 
-    boolean required() default false;
+    boolean required() default true;
 
-    String defaultValue() default "";
+    String defaultValue() default ValueConstants.DEFAULT_NONE;
+
 }

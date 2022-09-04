@@ -40,22 +40,23 @@ public class AuthInterceptor implements HandlerInterceptor {
                 //不需要检查登录权限
                 return true;
             }
-            TokenTool tokenTool = SpringContextTool.getBean(TokenTool.class);
-            String token = tokenTool.getToken(request);
-            log.info("获取到token:{}", token);
-            if (StringUtils.isEmpty(token)) {
-                log.error("token不能为空");
-                throw new AuthException("token不能为空");
-            }
-            try {
-                Claims claims = tokenTool.getClaimFromToken(token);
-                request.setAttribute("userId", claims.getId());
-            } catch (ExpiredJwtException e) {
-                throw new AuthException("token过期");
-            } catch (Exception e) {
-                log.error("token解析失败：", e.getMessage());
-                throw new AuthException("token无效");
-            }
+        }
+
+        TokenTool tokenTool = SpringContextTool.getBean(TokenTool.class);
+        String token = tokenTool.getToken(request);
+        log.info("获取到token:{}", token);
+        if (StringUtils.isEmpty(token)) {
+            log.error("token不能为空");
+            throw new AuthException("token不能为空");
+        }
+        try {
+            Claims claims = tokenTool.getClaimFromToken(token);
+            request.setAttribute("userId", claims.getId());
+        } catch (ExpiredJwtException e) {
+            throw new AuthException("token过期");
+        } catch (Exception e) {
+            log.error("token解析失败：", e.getMessage());
+            throw new AuthException("token无效");
         }
 
         return true;
