@@ -6,15 +6,20 @@ package com.min.seed.controller;
  * @date: 2022/7/16
  **/
 
+import com.min.seed.core.annotation.CurrentUser;
 import com.min.seed.core.annotation.NeedLogin;
+import com.min.seed.core.annotation.RequestJson;
 import com.min.seed.core.config.TokenConfig;
 import com.min.seed.core.error.exception.ServiceException;
 import com.min.seed.core.result.Result;
 import com.min.seed.core.result.ResultGenerator;
 import com.min.seed.core.tool.SpringContextTool;
 import com.min.seed.core.tool.TokenTool;
+import com.min.seed.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author:houqd
  * @time: 2022/7/16 9:11
  */
+@Slf4j
 @RestController
 @RequestMapping("/test")
 public class TestController {
@@ -30,10 +36,10 @@ public class TestController {
     @Autowired
     private TokenConfig weChatTokenProperties;
 
-    @GetMapping("/login")
-    public Result login() {
-        TokenTool tokenTool = SpringContextTool.getBean(TokenTool.class);
-        return ResultGenerator.genSuccessResult(tokenTool.createToken("userId-1","userName-aa"));
+    @PostMapping("/test")
+    public Result test(@RequestJson String name, @CurrentUser User user) {
+        log.info("test params: name={}, user={}", name, user);
+        return ResultGenerator.genSuccessResult();
     }
 
     @GetMapping("/test1")

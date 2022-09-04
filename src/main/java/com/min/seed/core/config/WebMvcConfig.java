@@ -2,6 +2,7 @@ package com.min.seed.core.config;
 
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.min.seed.core.config.resolver.CurrentUserMethodArgumentResolver;
 import com.min.seed.core.config.resolver.RequestJsonMethodArgumentResolver;
 import com.min.seed.core.interceptor.AuthInterceptor;
 import org.springframework.context.annotation.Configuration;
@@ -45,8 +46,8 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new CurrentUserMethodArgumentResolver());
         resolvers.add(new RequestJsonMethodArgumentResolver());
-//        resolvers.add(new RequestJsonHandlerMethodArgumentResolver());
         super.addArgumentResolvers(resolvers);
     }
 
