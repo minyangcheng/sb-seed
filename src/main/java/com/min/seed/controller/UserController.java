@@ -1,18 +1,16 @@
 package com.min.seed.controller;
 
-import com.min.seed.core.annotation.NeedLogin;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.min.seed.core.annotation.RequestJson;
 import com.min.seed.core.result.Result;
 import com.min.seed.core.result.ResultGenerator;
 import com.min.seed.core.validation.ValidGroup;
 import com.min.seed.entity.User;
 import com.min.seed.service.UserService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
@@ -23,6 +21,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
+@Slf4j
 @Validated
 public class UserController {
 
@@ -30,13 +29,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public Result login(@NotNull(message = "用户名不能为空") String username, String password) {
-        return ResultGenerator.genSuccessResult();
+    public Result login(@RequestJson @NotNull(message = "用户名不能为空") String username,
+                        @RequestJson @NotNull(message = "密码不能为空") String password) {
+        log.info("login params: username={}, password={}", username, password);
+        return ResultGenerator.genSuccessResult("");
     }
 
     @PostMapping("/add")
 //    @NeedLogin
-    public Result add(@Validated(ValidGroup.Crud.Create.class) User user) {
+    public Result add(@RequestBody @Validated(ValidGroup.Crud.Create.class) User user) {
         userService.save(user);
         return ResultGenerator.genSuccessResult();
     }
