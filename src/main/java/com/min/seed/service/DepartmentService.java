@@ -8,4 +8,6 @@ import com.min.seed.core.service.Service;
  */
 public interface DepartmentService extends Service<Department> {
 
+    Department getDepartmentDetail(Integer deptId);
+
 }

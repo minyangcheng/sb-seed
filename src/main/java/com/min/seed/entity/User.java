@@ -74,18 +74,9 @@ public class User {
     private Date pwdResetTime;
 
     /**
-     * 创建日期
+     * 部门
      */
-    @Column(name = "create_time")
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
+    private Department department;
 
     /**
      * 获取ID
@@ -267,40 +258,12 @@ public class User {
         this.pwdResetTime = pwdResetTime;
     }
 
-    /**
-     * 获取创建日期
-     *
-     * @return create_time - 创建日期
-     */
-    public Date getCreateTime() {
-        return createTime;
+    public Department getDepartment() {
+        return department;
     }
 
-    /**
-     * 设置创建日期
-     *
-     * @param createTime 创建日期
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * 获取更新时间
-     *
-     * @return update_time - 更新时间
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * 设置更新时间
-     *
-     * @param updateTime 更新时间
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -316,8 +279,6 @@ public class User {
                 ", isAdmin=" + isAdmin +
                 ", enabled=" + enabled +
                 ", pwdResetTime=" + pwdResetTime +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
                 '}';
     }
 }

@@ -22,8 +22,13 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
     @Override
     public User login(String username, String password) {
-        User user = userMapper.findUserByUsernameAndPassword(username, password);
+        User user = userMapper.selectByUsernameAndPassword(username, password);
         return user;
+    }
+
+    @Override
+    public User getUserDetail(Integer userId) {
+        return userMapper.selectById(userId);
     }
 
 }

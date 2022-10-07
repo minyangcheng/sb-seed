@@ -1,6 +1,7 @@
 package com.min.seed.entity;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "sys_dept")
@@ -23,16 +24,9 @@ public class Department {
     private Integer level;
 
     /**
-     * 创建日期
+     * 该部门下员工
      */
-    @Column(name = "create_time")
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    @Column(name = "update_time")
-    private Date updateTime;
+    private List<User> persons;
 
     /**
      * 获取ID
@@ -88,39 +82,11 @@ public class Department {
         this.level = level;
     }
 
-    /**
-     * 获取创建日期
-     *
-     * @return create_time - 创建日期
-     */
-    public Date getCreateTime() {
-        return createTime;
+    public List<User> getPersons() {
+        return persons;
     }
 
-    /**
-     * 设置创建日期
-     *
-     * @param createTime 创建日期
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * 获取更新时间
-     *
-     * @return update_time - 更新时间
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * 设置更新时间
-     *
-     * @param updateTime 更新时间
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setPersons(List<User> persons) {
+        this.persons = persons;
     }
 }

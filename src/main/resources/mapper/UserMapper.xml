@@ -5,22 +5,40 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="gender" jdbcType="VARCHAR" property="gender" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="is_admin" jdbcType="INTEGER" property="isAdmin" />
-    <result column="enabled" jdbcType="INTEGER" property="enabled" />
-    <result column="pwd_reset_time" jdbcType="TIMESTAMP" property="pwdResetTime" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <id column="user_id" jdbcType="BIGINT" property="userId"/>
+    <result column="username" jdbcType="VARCHAR" property="username"/>
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+    <result column="gender" jdbcType="VARCHAR" property="gender"/>
+    <result column="phone" jdbcType="VARCHAR" property="phone"/>
+    <result column="email" jdbcType="VARCHAR" property="email"/>
+    <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="is_admin" jdbcType="INTEGER" property="isAdmin"/>
+    <result column="enabled" jdbcType="INTEGER" property="enabled"/>
+    <result column="pwd_reset_time" jdbcType="TIMESTAMP" property="pwdResetTime"/>
+
+    <!--    关联查询-->
+    <association property="department" javaType="com.min.seed.entity.Department">
+      <id column="d_id" property="deptId"/>
+      <result column="d_name" property="name"/>
+      <result column="d_level" property="level"/>
+    </association>
   </resultMap>
 
-  <select id="findUserByUsernameAndPassword" resultMap="BaseResultMap">
+  <select id="selectByUsernameAndPassword" resultMap="BaseResultMap">
     select * from sys_user where username = #{username} and password = #{password}
+  </select>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    SELECT
+    u.*,
+    d.dept_id AS d_id,
+    d.name AS d_name,
+    d.level AS d_level
+    FROM
+    sys_user u
+    LEFT JOIN sys_dept d ON u.dept_id = d.dept_id
+    WHERE
+    user_id = #{userId}
   </select>
 
 </mapper>

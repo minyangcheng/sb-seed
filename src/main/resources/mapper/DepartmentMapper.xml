@@ -5,10 +5,23 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="dept_id" jdbcType="BIGINT" property="deptId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="level" jdbcType="INTEGER" property="level" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <id column="dept_id" jdbcType="BIGINT" property="deptId"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="level" jdbcType="INTEGER" property="level"/>
+
+    <collection property="persons" ofType="com.min.seed.entity.User"
+                resultMap="com.min.seed.dao.UserMapper.BaseResultMap">
+    </collection>
   </resultMap>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    sys_dept d
+    LEFT JOIN sys_user u ON d.dept_id = u.dept_id
+    WHERE
+    d.dept_id = #{deptId}
+  </select>
+
 </mapper>

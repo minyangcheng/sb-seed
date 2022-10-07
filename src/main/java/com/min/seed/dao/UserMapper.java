@@ -5,6 +5,8 @@ import com.min.seed.entity.User;
 
 public interface UserMapper extends Mapper<User> {
 
-    User findUserByUsernameAndPassword(String username, String password);
+    User selectByUsernameAndPassword(String username, String password);
+
+    User selectById(Integer userId);
 
 }

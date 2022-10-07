@@ -11,4 +11,6 @@ public interface UserService extends Service<User> {
 
     User login(String username, String password);
 
+    User getUserDetail(Integer userId);
+
 }

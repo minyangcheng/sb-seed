@@ -67,8 +67,8 @@ public class UserController {
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestBody Integer id) {
-        User user = userService.findById(id);
+    public Result detail(@RequestJson Integer id) {
+        User user = userService.getUserDetail(id);
         return ResultGenerator.genSuccessResult(user);
     }
 

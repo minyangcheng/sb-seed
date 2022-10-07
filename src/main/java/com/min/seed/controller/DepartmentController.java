@@ -1,4 +1,5 @@
 package com.min.seed.controller;
+
 import com.min.seed.core.result.Result;
 import com.min.seed.core.result.ResultGenerator;
 import com.min.seed.entity.Department;
@@ -15,8 +16,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by minych on 2022/10/07.
-*/
+ * Created by minych on 2022/10/07.
+ */
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
@@ -44,7 +45,7 @@ public class DepartmentController {
 
     @PostMapping("/detail")
     public Result detail(@RequestJson Integer id) {
-        Department department = departmentService.findById(id);
+        Department department = departmentService.getDepartmentDetail(id);
         return ResultGenerator.genSuccessResult(department);
     }
 
