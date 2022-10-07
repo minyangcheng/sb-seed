@@ -73,7 +73,7 @@ public class UserController {
     }
 
     @PostMapping("/list")
-    public Result list(@RequestJson(defaultValue = "0") Integer page, @RequestJson(defaultValue = "10") Integer size) {
+    public Result list(@RequestJson(defaultValue = "0") Integer page, @RequestJson(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
         List<User> list = userService.findAll();
         PageInfo pageInfo = new PageInfo(list);
