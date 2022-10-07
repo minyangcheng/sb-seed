@@ -30,7 +30,10 @@ spring:
         # 这里在IDEA中显示红色错误，不用管，因为org.springframework.boot.autoconfigure.data.redis.RedisProperties.Pool.setMaxWait(Duration maxWait)
         # 方法参数是Duration，IDEA无法识别，但是会自动注入成功
         max-wait: 2000 # 当连接池耗尽时， 抛出异常之前，连接分配被阻塞的时间，也就是连接池满后最长等待时间，负值表示无限期等待
-
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
 mybatis:
   # 别名前缀,配置类名就不用写全称了
   # type-aliases-package: com.zoctan.seedling.entity
