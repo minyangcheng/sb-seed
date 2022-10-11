@@ -12,6 +12,7 @@ import com.min.seed.entity.User;
 import com.min.seed.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,11 +32,16 @@ import java.util.List;
 @Validated
 public class UserController {
 
+    private static final String REDIS_KEY_ONLINE_USERS = "online:users";
+
     @Resource
     private UserService userService;
 
     @Autowired
     private TokenTool tokenTool;
+
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
     @PostMapping("/login")
     public Result login(@RequestJson @NotNull(message = "用户名不能为空") String username,
@@ -46,6 +52,8 @@ public class UserController {
             return ResultGenerator.genFailResult("用户名或密码错误");
         }
         String token = tokenTool.createToken(String.valueOf(user.getUserId()), user.getUsername());
+        //登录：添加在线用户记录
+        redisTemplate.opsForSet().add(REDIS_KEY_ONLINE_USERS, username);
         return ResultGenerator.genSuccessResult(token);
     }
 
@@ -55,7 +63,9 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public Result logout() {
+    public Result logout(@CurrentUser User user) {
+        //登出：删除在线用户
+        redisTemplate.opsForSet().remove(REDIS_KEY_ONLINE_USERS, user.getUsername());
         return ResultGenerator.genSuccessResult();
     }
 
