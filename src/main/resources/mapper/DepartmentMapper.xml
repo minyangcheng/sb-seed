@@ -9,8 +9,7 @@
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="level" jdbcType="INTEGER" property="level"/>
 
-    <collection property="persons" ofType="com.min.seed.entity.User"
-                resultMap="com.min.seed.dao.UserMapper.BaseResultMap">
+    <collection property="persons" resultMap="com.min.seed.dao.UserMapper.BaseResultMap">
     </collection>
   </resultMap>
 

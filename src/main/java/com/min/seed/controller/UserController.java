@@ -2,6 +2,7 @@ package com.min.seed.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.min.seed.core.annotation.CurrentUser;
 import com.min.seed.core.annotation.RequestJson;
 import com.min.seed.core.result.Result;
 import com.min.seed.core.result.ResultGenerator;
@@ -46,6 +47,16 @@ public class UserController {
         }
         String token = tokenTool.createToken(String.valueOf(user.getUserId()), user.getUsername());
         return ResultGenerator.genSuccessResult(token);
+    }
+
+    @PostMapping("/info")
+    public Result info(@CurrentUser User user) {
+        return ResultGenerator.genSuccessResult(user);
+    }
+
+    @PostMapping("/logout")
+    public Result logout() {
+        return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/add")

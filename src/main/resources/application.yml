@@ -79,7 +79,7 @@ logging:
   #  # 设置目录
   #  path: /var/log
   level:
-    com.min.seed.dao: debug
+    com.min.seed: debug
 
 
 config:
