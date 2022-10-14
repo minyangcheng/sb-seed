@@ -38,7 +38,7 @@ public class FileController {
                 des.delete();
             }
             Files.copy(file.getInputStream(), des.toPath());
-            data.add(fileName);
+            data.add("files/" + fileName);
             log.debug("Upload file success : " + des.getAbsolutePath());
         }
         return ResultGenerator.genSuccessResult(data);
